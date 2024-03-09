@@ -21,26 +21,15 @@ library(hexbin)
 #setting working directory
 setwd("/Users/anahat/Desktop/541_Data")
 
-# loading non-residents data from wave 1 and wave 2 
-nonres05 <- read_sav('/Users/anahat/Desktop/541_Data/2005/DS0004_nonres/22626-0004-Data.sav') # 2005
-load("/Users/anahat/Desktop/541_Data/2011_12/DS0007_nonres/nonres11.rda") # 2011-12
-
-# loading individual level data from wave 1 and wave 2
-ind05 <- read_sav("/Users/anahat/Desktop/541_Data/2005/DS0001_ind/22626-0001-Data.sav") # 2005
-load("/Users/anahat/Desktop/541_Data/2011_12/DS0001_ind/36151-0001-Data.rda") # 2011-12
-
-# creating a subset that has non-residents who are husbands 
-non_res05 <- subset(nonres05, NR1 == 1 & NR4 == 2 & NR5 == 1) 
-non_res11 <- subset(da36151.0007, NR1 == "(1) Spouse" & NR4 == "(02) Wife/Husband" & NR5 == "(1) Male")
-
 # uploading the new csv - contains non-residents who migrated only in wave 1 (MIG_STAT = 1), only in wave 2 (MIG_STAT = 2) and both in wave 1 and 2 (MIG_STAT = 3)
 # only includes non residents from households who were interviewed in both wave 1 and 2 
 # ID variable is concatenated STATEID, DISTID, PSUID, HHID, HHSPLITID
 #X.VARNAME - info for wave1, VARNAME - info for wave2
-non_res <- read.csv("/Users/anahat/Desktop/541_Data/non_res05.csv")
+non_res <- read.csv("https://raw.githubusercontent.com/anahatkc/ECON541A3/main/non_res05.csv")
 
 # uploading the eligible women file (2005, 2011-12)
-load("/Users/anahat/Desktop/541_Data/ICPSR_37382 2/DS0015/37382-0015-Data.rda")
+
+load("/https://raw.githubusercontent.com/anahatkc/ECON541A3/main/37382-0015-Data.rda")
 
 # keeping only relevant variables
 em_women <- select(da37382.0015, SURVEY, HHBASE, HHFAM2, PBASE, STATEID, DISTID, HHID2012, 
@@ -59,7 +48,7 @@ em_women$ID <- paste(em_women$STATEID, em_women$DISTID, em_women$PSUID, em_women
 non_res$ID <- paste(non_res$X.STATEID, non_res$X.DISTID, non_res$X.PSUID, non_res$X.HHID, sep = ",")
 
 # uploading women + non_res file
-wmn_nonres <- read.csv("/Users/anahat/Desktop/541_Data/wmn_nonres.csv")
+wmn_nonres <- read.csv("https://raw.githubusercontent.com/anahatkc/ECON541A3/main/wmn_nonres.csv")
 
 # csv files
 write.csv(em_women,'women1.csv')
