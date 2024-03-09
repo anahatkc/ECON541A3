@@ -27,32 +27,8 @@ setwd("/Users/anahat/Desktop/541_Data")
 #X.VARNAME - info for wave1, VARNAME - info for wave2
 non_res <- read.csv("https://raw.githubusercontent.com/anahatkc/ECON541A3/main/non_res05.csv")
 
-# uploading the eligible women file (2005, 2011-12)
-
-load("/https://raw.githubusercontent.com/anahatkc/ECON541A3/main/37382-0015-Data.rda")
-
-# keeping only relevant variables
-em_women <- select(da37382.0015, SURVEY, HHBASE, HHFAM2, PBASE, STATEID, DISTID, HHID2012, 
-                       HHSPLITID, HHSPLITID2012, RO4, RO5, RO6, RO8, PSUID, PERSONID, EWWAVES, 
-                       XGR1A, XGR1B, XGR1C, XGR1D, XGR1E, 
-                       XGR1F, XGR1G, XGR3A, XGR3B, XGR3C, XGR3D, XGR3E, XGR3F, XGR3G, XGR7A, 
-                       XGR7B, XGR7C, XGR7D, XGR7E, XGR7F, XGR7G, XGR2A, XGR2B, XGR2C, XGR2D, 
-                       XGR2E, XGR2F, XGR2G, XGR27B, XGR28, XGR9AY, XGR10AY, XGR11AY, GR1A, 
-                       GR1B, GR1C, GR1D, GR1E, GR1F, GR1G, GR3A, GR3B, GR3C, GR3D, GR3E, GR3F, 
-                       GR3G, GR7A, GR7B, GR7C, GR7D, GR7E, GR7F, GR7G, GR2A, GR2B, GR2C, GR2D, 
-                       GR2E, GR2F, GR2G, GR27B, GR28, GR9AY, GR10AY, GR11AY, GR12AY, GR18A, 
-                       GR18B, GR18C, GR18D, GR19, MH7, GROUPS6, XID11)
-
-# creating a new variable to merge on 
-em_women$ID <- paste(em_women$STATEID, em_women$DISTID, em_women$PSUID, em_women$HHID2012, sep = ",")
-non_res$ID <- paste(non_res$X.STATEID, non_res$X.DISTID, non_res$X.PSUID, non_res$X.HHID, sep = ",")
-
 # uploading women + non_res file
 wmn_nonres <- read.csv("https://raw.githubusercontent.com/anahatkc/ECON541A3/main/wmn_nonres.csv")
-
-# csv files
-write.csv(em_women,'women1.csv')
-write.csv(non_res, 'non_res_full1.csv')
 
 # creating table 
 
